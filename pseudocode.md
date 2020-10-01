@@ -56,13 +56,9 @@ IF "Generate Password" button is clicked THEN
     
     IF INPUT is invalid THEN
     
-        Print "Your selections do not meet the requirements."
+        Print "Undefined."
 
-    IF INPUT is valid THEN
-    
-        Print "Generate password?"
-
-    IF INPUT is valid THEN
+    IF "Generate Password" button is clicked THEN
 
         Print generated password onto webpage.
 
