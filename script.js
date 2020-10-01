@@ -66,18 +66,18 @@ for (let i = password.length; i < passwordLength; i++) {
   password += randomValue[genkey]();
 };
 }
-//function getRandomLower()
-//return String.fromCharCode(Math.floor(Math.random() * 26) + ?);
-//}
+function getRandomLower()
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
 
-//function getRandomUpper() {
-//return String.fromCharCode(Math.floor(Math.random() * 26) + ?);
-//}
+function getRandomUpper() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
 
-//function getRandomNumber() {
-//return String.fromCharCode(Math.floor(Math.random() * 11) + ?);
-//}
+function getRandomNumber() {
+  return String.fromCharCode(Math.floor(Math.random() * 11) + 49);
+}
 
-//function getRandomSymbol() {
-//return String.fromCharCode("!*+,-./:;<=>?@^_`|~");
-//}
+function getRandomSymbol() {
+  return String.fromCharCode("!*+,-./:;<=>?@^_`|~");
+}
