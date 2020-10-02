@@ -1,37 +1,43 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
-const randomValue = { 
+
+const randomValue = {
   lower: getRandomLower,
   upper: getRandomUpper,
   number: getRandomNumber,
   symbol: getRandomSymbol,
 };
-let passwordLength = prompt("Enter a password length between 8 and 128.");
-while (passwordLength < 8 || passwordLength > 128) {
+
+let lengthEl = prompt("Enter a password length between 8 and 128.");
+while (lengthEl < 8 || lengthEl > 128) {
   alert("Number must be between 8 and 128.");
-  passwordLength = prompt("Enter a password length between 8 and 128.");
+  lengthEl = prompt("Enter a password length between 8 and 128.");
 }
-let lowerCase = prompt("Would you like to include Lowercase letters?");
-let upperCase = prompt("Would you like to include Uppercase letters?");
-let includeNumber = prompt("Would you like to include Numbers?");
-let includeSymbol = prompt("Would you like to include Symbols?");
-while (lowerCase === null && upperCase === null && includeNumber === null && includeSymbol === null) {
-  lowerCase = prompt("Would you like to include Lowercase letters?");
-  upperCase = prompt("Would you like to include Uppercase letters?");
-  includeNumber = prompt("Would you like to include Numbers?");
-  includeSymbol = prompt("Would you like to include Symbols?");
+let lowercaseEl = prompt("Would you like to include Lowercase letters?");
+let uppercaseEl = prompt("Would you like to include Uppercase letters?");
+let numberEl = prompt("Would you like to include Numbers?");
+let symbolEl = prompt("Would you like to include Symbols?");
+while (
+  lowercaseEl === null &&
+  uppercaseEl === null &&
+  numberEl === null &&
+  symbolEl === null
+) {
+  lowercaseEl = prompt("Would you like to include Lowercase letters?");
+  uppercaseEl = prompt("Would you like to include Uppercase letters?");
+  numberEl = prompt("Would you like to include Numbers?");
+  symbolEl = prompt("Would you like to include Symbols?");
 }
 const generators = [];
-if(lowerCase !== null ){
-  generators.push("lower");
+if (lowercaseEl !== null) {
+  generators.push("lowercase");
 }
-if(upperCase !== null ){
-  generators.push("upper");
+if (uppercaseEl !== null) {
+  generators.push("uppercase");
 }
-if(includeNumber !== null ){
+if (numberEl !== null) {
   generators.push("number");
 }
-if(includeSymbol !== null ){
+if (symbolEl !== null) {
   generators.push("symbol");
 }
 
@@ -41,7 +47,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
@@ -49,23 +54,24 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   let password = "";
-  if (lowerCase === "") {
+  if (lowercaseEl === "") {
     password += getRandomLower();
   }
-  if (upperCase === "") {
+  if (uppercaseEl === "") {
     password += getRandomUpper();
   }
-  if (includeNumber === "") {
+  if (numberEl === "") {
     password += getRandomNumber();
   }
-  if (includeSymbol === "") {
+  if (symbolEl === "") {
     password += getRandomSymbol();
   }
-for (let i = password.length; i < passwordLength; i++) {
-  let genkey = generators [Math.floor(Math.random() * generators.length)]
-  password += randomValue[genkey]();
-};
+  for (let i = password.length; i < lengthEl; i++) {
+    generateBtn = generators[Math.floor(Math.random() * generators.length)];
+    password += randomValue[generateBtn]();
+  }
 }
+
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -79,6 +85,6 @@ function getRandomNumber() {
 }
 
 function getRandomSymbol() {
-  const symbols = '!@#$%^&*(){}[]=<>/,.';
+  const symbols = "!@#$%^&*(){}[]=<>/,.";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
