@@ -1,22 +1,22 @@
 var generateBtn = document.querySelector("#generate");
 
-const randomValue = {
+var randomValue = {
   lower: getRandomLower,
   upper: getRandomUpper,
   number: getRandomNumber,
   symbol: getRandomSymbol,
 };
 
-let lengthEl = prompt("Enter a password length between 8 and 128.");
-while (lengthEl < 8 || lengthEl > 128) {
+var lengthEl = prompt("Enter a password length between 8 and 128.");
+if (lengthEl < 8 || lengthEl > 128) {
   alert("Number must be between 8 and 128.");
   lengthEl = prompt("Enter a password length between 8 and 128.");
 }
-let lowercaseEl = prompt("Would you like to include Lowercase letters?");
-let uppercaseEl = prompt("Would you like to include Uppercase letters?");
-let numberEl = prompt("Would you like to include Numbers?");
-let symbolEl = prompt("Would you like to include Symbols?");
-while (
+var lowercaseEl = prompt("Would you like to include Lowercase letters?");
+var uppercaseEl = prompt("Would you like to include Uppercase letters?");
+var numberEl = prompt("Would you like to include Numbers?");
+var symbolEl = prompt("Would you like to include Symbols?");
+if (
   lowercaseEl === null &&
   uppercaseEl === null &&
   numberEl === null &&
@@ -27,7 +27,7 @@ while (
   numberEl = prompt("Would you like to include Numbers?");
   symbolEl = prompt("Would you like to include Symbols?");
 }
-const generators = [];
+var generators = [];
 if (lowercaseEl !== null) {
   generators.push("lowercase");
 }
@@ -53,7 +53,7 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
-  let password = "";
+  var password = "";
   if (lowercaseEl === "") {
     password += getRandomLower();
   }
@@ -66,22 +66,22 @@ function generatePassword() {
   if (symbolEl === "") {
     password += getRandomSymbol();
   }
-  for (let i = password.length; i < lengthEl; i++) {
-    generateBtn = generators[Math.floor(Math.random() * generators.length)];
-    password += randomValue[generateBtn]();
+  for (var i = password.length; i < lengthEl; i++) {
+    passwordText.textContent = password[i];
+    console.log(passwordText[i]);
   }
 }
 
 function getRandomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  return Math.floor(Math.random() * 26) + 97;
 }
 
 function getRandomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  return Math.floor(Math.random() * 26) + 65;
 }
 
 function getRandomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+  return Math.floor(Math.random() * 10) + 48;
 }
 
 function getRandomSymbol() {
