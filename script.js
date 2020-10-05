@@ -1,12 +1,5 @@
 var generateBtn = document.querySelector("#generate");
 
-var randomValue = {
-  lower: getRandomLower,
-  upper: getRandomUpper,
-  number: getRandomNumber,
-  symbol: getRandomSymbol,
-};
-
 var lengthEl = prompt("Enter a password length between 8 and 128.");
 if (lengthEl < 8 || lengthEl > 128) {
   alert("Number must be between 8 and 128.");
@@ -27,25 +20,12 @@ if (
   numberEl = prompt("Would you like to include Numbers?");
   symbolEl = prompt("Would you like to include Symbols?");
 }
-var generators = [];
-if (lowercaseEl !== null) {
-  generators.push("lowercase");
-}
-if (uppercaseEl !== null) {
-  generators.push("uppercase");
-}
-if (numberEl !== null) {
-  generators.push("number");
-}
-if (symbolEl !== null) {
-  generators.push("symbol");
-}
+
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
@@ -53,38 +33,22 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
-  var password = "";
-  if (lowercaseEl === "") {
-    password += getRandomLower();
+  for (var i = passwordText; i < lengthEl; i++) {
+    var passwordText = document.querySelector("#password");
+    passwordText += yourPassword[i];
   }
-  if (uppercaseEl === "") {
-    password += getRandomUpper();
+  var yourPassword = "";
+  while (lowercaseEl == "") {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
   }
-  if (numberEl === "") {
-    password += getRandomNumber();
+  while (uppercaseEl == "") {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
   }
-  if (symbolEl === "") {
-    password += getRandomSymbol();
+  while (numberEl == "") {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
   }
-  for (var i = password.length; i < lengthEl; i++) {
-    passwordText.textContent = password[i];
-    console.log(passwordText[i]);
+  while (symbolEl == "") {
+    var symbols = "!@#$%^&*(){}[]=<>/,.";
+    return symbols[Math.floor(Math.random() * symbols.length)];
   }
-}
-
-function getRandomLower() {
-  return Math.floor(Math.random() * 26) + 97;
-}
-
-function getRandomUpper() {
-  return Math.floor(Math.random() * 26) + 65;
-}
-
-function getRandomNumber() {
-  return Math.floor(Math.random() * 10) + 48;
-}
-
-function getRandomSymbol() {
-  const symbols = "!@#$%^&*(){}[]=<>/,.";
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
+};
